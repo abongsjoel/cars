@@ -4,7 +4,6 @@ import { removeCar } from "../store";
 function CarList() {
   const dispatch = useDispatch();
   const cars = useSelector((rootState) => rootState.cars.data);
-  console.log(cars);
 
   const handleCarDelete = (car) => {
     dispatch(removeCar(car.id));
