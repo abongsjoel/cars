@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeCar } from "../store";
 import { createSelector } from "@reduxjs/toolkit";
 
-const memoizedCars = createSelector(
+export const memoizedCars = createSelector(
   [(state) => state.cars.data, (state) => state.cars.searchTerm],
   (data, searchTerm) =>
     data.filter((car) =>
