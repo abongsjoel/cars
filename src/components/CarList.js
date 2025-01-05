@@ -3,7 +3,10 @@ import { removeCar } from "../store";
 import { createSelector } from "@reduxjs/toolkit";
 
 export const memoizedCars = createSelector(
-  [(state) => state.cars.data, (state) => state.cars.searchTerm],
+  [
+    (rootState) => rootState.cars.data,
+    (rootState) => rootState.cars.searchTerm,
+  ],
   (data, searchTerm) =>
     data.filter((car) =>
       car.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -18,14 +21,17 @@ function CarList() {
   //     )
   //   );
   const cars = useSelector(memoizedCars);
+  const name = useSelector((rootState) => rootState.form.name);
 
   const handleCarDelete = (car) => {
     dispatch(removeCar(car.id));
   };
 
   const renderedCars = cars.map((car) => {
+    const bold = name && car.name.toLowerCase().includes(name.toLowerCase());
+    console.log({ bold });
     return (
-      <div key={car.id} className="panel">
+      <div key={car.id} className={`panel ${bold && "bold"}`}>
         <p>
           {car.name} - ${car.cost}
         </p>
