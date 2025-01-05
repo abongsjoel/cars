@@ -3,7 +3,7 @@ import { changeSearchTerm } from "../store";
 
 function CarSearch() {
   const dispatch = useDispatch();
-  const searchTerm = useSelector((rootState) => rootState.searchTerm);
+  const searchTerm = useSelector((rootState) => rootState.cars.searchTerm);
 
   const handleSearchTermChange = (e) => {
     dispatch(changeSearchTerm(e.target.value));
